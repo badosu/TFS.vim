@@ -5,16 +5,18 @@ TFS.vim aims to enable regular TFS operation from within Vim.
 
 ## Available commands ##
 
-*   **TFget:** Get latest version from file or directory
-*   **TFadd, TFdelete:** Add deletes file
-*   **TFundo:** Undo changes in file directory
-*   **TFshelve, TFunshelve:** Shelve/Unshelve changeset
-*   **TFcheckout, TFcheckin:** Checkout/checkin file/directory
-*   **TFhistory:** Show history of file
+* **TFget:** 					Get latest version from file or directory
+* **TFadd, TFdelete:** 			Add/deletes file
+* **TFundo:** 					Undo changes in file or directory
+* **TFshelve, TFunshelve:** 	Shelve/Unshelve changeset
+* **TFcheckout, TFcheckin:** 	Checkout/checkin file or directory
+* **TFhistory:** 				Show history
+* **TFresult:** 				Runs arbitrary tf command, see (http://msdn.microsoft.com/en-us/library/z51z7zy0(v=vs.80).aspx)
 
 ## Options ##
 
 To set TFS binary, put this in your .vimrc: 
+
 `let g:tfvim_bin = "C:/..."`
 
 ## Quick usage tips: ##
@@ -26,10 +28,22 @@ To set TFS binary, put this in your .vimrc:
 * `:TFadd %:p` *Add current editing file*
 * `:TFcheckout %:p` *Checkout current file*
 * `:TFcheckin %:p` *Checkin current editing file*
-* `:TFshelve` *Checkout current file*
-* `:TFunshelve`
+* `:TFshelve` *Shelve changeset*
+* `:TFunshelve` *Unshelve changeset*
 
-## Possible improvements ##
+## Advanced usage ##
 
-* `let g:tfvim_silent` option
-* `let g:tfvim_alwaysrecursible` option
+You may use any tf command available with **TFresult**
+
+* `:TFresult branch trunk wi44-arbitrary-feature`
+
+## Viable Improvements ##
+
+* Silent Option `let g:tfvim_silent`
+* Always Recursible Option `let g:tfvim_alwaysrecursible`
+* Adapt it for linux `tf` binary
+* Display status window
+* **TFbranch** and **TFmerge**
+* Merge directly in Vim
+
+*Some where Inspired by fugitive.vim's `:Gstatus`*
