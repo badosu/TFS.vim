@@ -1,25 +1,35 @@
-Nesta página irei descrever como integrar o VIM às funções básicas do TFS. Como isso funciona? Criei um script no .vimrc que basicamente faz chamadas ao executável do tfs e realiza as operações através de funções: Get, Add, Delete, Undo, Checkout, Checkin, Shelve, Unshelve. Basicamente uma interface amigável à linha de comando do TFS. O script está disponível em um gist no GitHub: [vimrc for integration with TFS][1] . Adicione-o ao seu .vimrc e você terá acesso às funções: 
+TFS.vim
+============================================================
 
-*   **TFget:** Pega a última versão disponível do arquivo, ou diretório.
-*   **TFadd, TFdelete:** Adiciona/Deleta um arquivo do versionamento.
-*   **TFundo:** Restaura as modificações feitas no arquivo para a última do versionamento.
-*   **TFshelve, TFunshelve:** Guarda/Restaura modificações no changeset.
-*   **TFcheckout, TFcheckin:** Faz checkout/checkin do arquivo/diretório.
-*   **TFhistory:** Mostra o histórico no versionamento.
+TFS.vim aims to enable regular TFS operation from within Vim.
 
- [1]: https://gist.github.com/1142264 
+## Available commands ##
 
-Por padrão todos os comandos são rodados sem recursividade e devem ter como o argumento o caminho de um diretório ou arquivo. Para adicionar recursividade passe o parâmetro `-R`. Ou mude o padrão para ser recursivo no .vimrc. 
+*   **TFget:** Get latest version from file or directory
+*   **TFadd, TFdelete:** Add deletes file
+*   **TFundo:** Undo changes in file directory
+*   **TFshelve, TFunshelve:** Shelve/Unshelve changeset
+*   **TFcheckout, TFcheckin:** Checkout/checkin file/directory
+*   **TFhistory:** Show history of file
 
-Para se obter o nome do arquivo que se está alterando no momento, utilize `%:p`. Por exemplo, ao adicionar um arquivo para o versionamento faço o seguinte procedimento. Crio o arquivo, escrevo ele (mesmo vazio) e rodo `:TFadd %:p`, ao término da criação basta dar checkin: `:TFcheckin %:p`. 
+## Options ##
 
-Não se esqueça de verificar se o caminho do executável do tfs está correto no .vimrc. Para mudar basta mudar ou rodar a função com o argumento correto `:TFsetbin("C:\...")`. 
+To set TFS binary, put this in your .vimrc: 
+`let g:tfvim_bin = "C:/..."`
 
-Um plugin altamente recomendado para se navegar pelo filesystem é o NERDTree. Disponível em <http://www.vim.org/scripts/script.php?script_id=1658>. Recomendo fortemente este tutorial recente no NetTutsPlus: <http://net.tutsplus.com/tutorials/other/vim-essential-plugin-nerdtree>. 
+## Quick usage tips: ##
 
-Em tempo, referências para TFS via linha de comando: 
+* `:TFget -R directory` *Get latest version on directory*
+* `:TFget file` *Get latest file*
+* `:TFadd -R directory` *Checkin current editing file*
+* `:TFhistory` *View history*
+* `:TFadd %:p` *Add current editing file*
+* `:TFcheckout %:p` *Checkout current file*
+* `:TFcheckin %:p` *Checkin current editing file*
+* `:TFshelve` *Checkout current file*
+* `:TFunshelve`
 
- [Operações][http://msdn.microsoft.com/en-us/library/z51z7zy0(v=vs.80).aspx] 
- [Informações][http://msdn.microsoft.com/en-us/library/ms181450(v=vs.80).aspx] 
+## Possible improvements ##
 
-Saudações, Amadeus. 
+* `let g:tfvim_silent` option
+* `let g:tfvim_alwaysrecursible` option
