@@ -13,13 +13,19 @@ TFS.vim aims to enable regular TFS operation from within Vim.
 * **TFhistory:** 				Show history
 * **TFresult:** 				Runs arbitrary tf command, see (http://msdn.microsoft.com/en-us/library/z51z7zy0(v=vs.80).aspx)
 
+## Installation ##
+
+Just paste the contents of TFS.vim somewhere in your `_vimrc` file for now, and check the binary path option.
+
+It is necessary for the commands to be run on files mapped by TFS, otherwise it will not return anything.
+
 ## Options ##
 
 To set TFS binary, put this in your .vimrc: 
 
 `let g:tfvim_bin = "C:/..."`
 
-## Quick usage tips: ##
+## Quick usage tips ##
 
 * `:TFget -R directory` *Get latest version on directory*
 * `:TFget file` *Get latest file*
@@ -46,4 +52,4 @@ You may use any tf command available with **TFresult**
 * **TFbranch** and **TFmerge**
 * Merge directly in Vim
 
-*Some where Inspired by fugitive.vim's `:Gstatus`*
+*Some where inspired by fugitive.vim's `:Gstatus`*
